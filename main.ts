@@ -16,4 +16,9 @@ namespace comment {
     export function sendSSID(ssid : string){
 
     }
+    //% blockId=PASS block="PASSWORD %string %v"
+    export function sendPASS(pass : string){
+
+    }
+
 }
