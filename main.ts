@@ -7,7 +7,7 @@ namespace comment {
         pin2: DigitalPin;        
     }
     
-    //% blockId=INIT block="初期化"
+    //% blockId=INIT block="初期化　%v"
     export function init() :KAGA_IoT{
         let block = new KAGA_IoT();
         serial.redirect(SerialPin.P0, SerialPin.P1, 9600)
