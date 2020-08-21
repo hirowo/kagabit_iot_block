@@ -13,7 +13,7 @@ namespace comment {
         serial.redirect(SerialPin.P0, SerialPin.P1, 9600)
     }
     //% blockId=SSID block="SSID %string %v"
-    export function sendSSID(ssid : number){
+    export function sendSSID(ssid : string){
 
     }
 }
