@@ -7,17 +7,14 @@ namespace comment {
         pin2: DigitalPin;        
     }
     
-    //% blockId=INIT block="ピン指定 %PIN1 %PIN2"
-    export function init(PIN1: DigitalPin, PIN2: DigitalPin) :KAGA_IoT{
+    //% blockId=INIT block="初期化"
+    export function init() :KAGA_IoT{
         let block = new KAGA_IoT();
-        block.pin1 = PIN1;
-        block.pin2 = PIN2;
-        serial.setBaudRate(BaudRate.BaudRate9600)
+        serial.redirect(SerialPin.P0, SerialPin.P1, 9600)
         return block
     }
     //% blockId=SSID block="SSID %string %v"
-
-    export function sendSSID(){
+    export function sendSSID(ssid : number){
 
     }
 }
