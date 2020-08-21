@@ -8,10 +8,9 @@ namespace comment {
     }
     
     //% blockId=INIT block="初期化　%v"
-    export function init() :KAGA_IoT{
+    export function init() : void{
         let block = new KAGA_IoT();
         serial.redirect(SerialPin.P0, SerialPin.P1, 9600)
-        return block
     }
     //% blockId=SSID block="SSID %string %v"
     export function sendSSID(ssid : number){
