@@ -14,13 +14,19 @@ namespace comment {
     }
     //% blockId=SSID block="SSID %string %v"
     export function sendSSID(ssid : string){
+        serial.writeString("SS ");
         serial.writeString(ssid);
-        serial.writeString("\r\n");
+        serial.writeString("\n");
     }
     //% blockId=PASS block="PASSWORD %string %v"
     export function sendPASS(pass : string){
+        serial.writeString("PA ");
         serial.writeString(pass);
-        serial.writeString("\r\n");
+        serial.writeString("\n");
     }
-
+   //% blockId=SCONNECT block="接続  %v"
+    export function Connect() : void {
+        serial.writeString("WS");
+        serial.writeString("\n");
+    }
 }
