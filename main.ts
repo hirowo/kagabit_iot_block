@@ -25,9 +25,9 @@ namespace comment {
         serial.writeString("\n");
     }
    //% blockId=SCONNECT block="接続  %v"
-    export function Connect() : void {
+    export function Connect(dumy : string) {
         serial.writeString("WS　");
-        serial.writeString("dumy");
+        serial.writeString(dumy);
         serial.writeString("\n");
     }
 }
