@@ -44,7 +44,7 @@ namespace comment {
     }
     //% blockId=S_web block="webサーバー開始 %v"
     export function start_web() : void {
-        serial.writeString("MD");
+        serial.writeString("SWEB");
         serial.writeString("\n");
     }
 
