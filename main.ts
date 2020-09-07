@@ -36,7 +36,7 @@ namespace comment {
         serial.writeString(interval.toString());
         serial.writeString("\n");
     }
-     //% blockId=mdsn block="MDSN %string %v"
+     //% blockId=mdsn block="ホスト名を設定 %string %v"
     export function set_mdsn(str : string) {
         serial.writeString("MD ");
         serial.writeString(str);
