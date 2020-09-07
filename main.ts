@@ -29,4 +29,22 @@ namespace comment {
         serial.writeString("WS");
         serial.writeString("\n");
     }
+     //% blockId=sendsatring block="文字列を表示する %string %v"
+    export function SendString(str : string) {
+        serial.writeString("SSD ");
+        serial.writeString(str);
+        serial.writeString("\n");
+    }
+     //% blockId=mdsn block="MDSN %string %v"
+    export function set_mdsn(str : string) {
+        serial.writeString("MD ");
+        serial.writeString(str);
+        serial.writeString("\n");
+    }
+    //% blockId=S_web block="webサーバー開始 %v"
+    export function start_web() : void {
+        serial.writeString("MD");
+        serial.writeString("\n");
+    }
+
 }
