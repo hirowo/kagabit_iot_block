@@ -30,9 +30,10 @@ namespace comment {
         serial.writeString("\n");
     }
      //% blockId=sendsatring block="文字列を表示する %string %v"
-    export function SendString(str : string) {
+    export function SendString(str : string,interval : number) {
         serial.writeString("SSD ");
         serial.writeString(str);
+        serial.writeString(interval.toString());
         serial.writeString("\n");
     }
      //% blockId=mdsn block="MDSN %string %v"
