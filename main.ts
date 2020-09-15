@@ -47,5 +47,27 @@ namespace comment {
         serial.writeString("SWEB");
         serial.writeString("\n");
     }
+    //% blockId=START_AMB block="Ambientサービスに接続 %String %String %v"
+    export function StartAmb(ambient_id : string,key : string) {
+        serial.writeString("SAMB ");
+        serial.writeString(ambient_id);
+        serial.writeString(" ");
+        serial.writeString(key);
+        serial.writeString("\n");
+    }
+    //% blockId=SET_AMB block="Ambient送信データをセット %String %String %v"
+    export function SetAmb(channel : number,data : string) {
+        serial.writeString("STA ");
+        serial.writeString(channel.toString());
+        serial.writeString(" ");
+        serial.writeString(data);
+        serial.writeString("\n");
+    }
+    //% blockId=SEND_AMB block="Ambient送信データをセット%v"
+    export function SendAmb()  : void{
+        serial.writeString("SEA");
+        serial.writeString("\n");
+    }
+        
 
 }
