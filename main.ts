@@ -55,7 +55,7 @@ namespace comment {
         serial.writeString(key);
         serial.writeString("\n");
     }
-    //% blockId=SET_AM block="Ambient　チャート番号　%number データ%number "
+    //% blockId=SET_AM block="Ambient　チャート番号　%number データ %number "
     export function SetAmb(channel : number,data : number) {
         serial.writeString("STA ");
         serial.writeString(channel.toString());
