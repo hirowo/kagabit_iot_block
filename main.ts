@@ -29,7 +29,7 @@ namespace comment {
         serial.writeString("WS");
         serial.writeString("\n");
     }
-     //% blockId=sendsatring block="文字列をwebに表示する %string %v"
+     //% blockId=sendsatring block="文字列をwebに表示する %string %number"
     export function SendString(str : string,interval : number) {
         serial.writeString("SSD ");
         serial.writeString(str);
