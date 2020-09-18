@@ -47,7 +47,7 @@ namespace comment {
         serial.writeString("SWEB");
         serial.writeString("\n");
     }
-    //% blockId=START_AMB block="チャネルid %String ライトキー%String "
+    //% blockId=START_AMB block="チャネルid %String ライトキー %String "
     export function startAmb(ambient_id : string,key : string) {
         serial.writeString("SAMB ");
         serial.writeString(ambient_id);
