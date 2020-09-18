@@ -29,7 +29,7 @@ namespace comment {
         serial.writeString("WS");
         serial.writeString("\n");
     }
-     //% blockId=sendsatring block="文字列をwebに表示する %string %number"
+     //% blockId=sendsatring block="文字列をwebに表示する %string データ%number"
     export function SendString(str : string,int : number) {
         serial.writeString("SSD ");
         serial.writeString(str);
@@ -55,12 +55,12 @@ namespace comment {
         serial.writeString(key);
         serial.writeString("\n");
     }
-    //% blockId=SET_AM block="Ambient　チャート番号　%number データ%String "
-    export function SetAmb(channel : number,data : string) {
+    //% blockId=SET_AM block="Ambient　チャート番号　%number データ%number "
+    export function SetAmb(channel : number,data : number) {
         serial.writeString("STA ");
         serial.writeString(channel.toString());
         serial.writeString(" ");
-        serial.writeString(data);
+        serial.writeString(data.toString());
         serial.writeString("\n");
     }
     //% blockId=SEND_AMB block="Ambientにデータを送信"
