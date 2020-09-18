@@ -37,24 +37,24 @@ namespace comment {
         serial.writeString("\n");
     }
      //% blockId=mdsn block="ホスト名を設定 %string %v"
-    export function set_mdsn(str : string) {
-        serial.writeString("MD ");
-        serial.writeString(str);
-        serial.writeString("\n");
-    }
-    //% blockId=S_web block="webサーバー開始 %v"
-    export function start_web() : void {
-        serial.writeString("SWEB");
-        serial.writeString("\n");
-    }
-    //% blockId=START_AMB block="Ambientサービスに接続 %String %String %v"
-//    export function StartAmb(ambient_id : string,key : string) {
- //       serial.writeString("SAMB ");
-//        serial.writeString(ambient_id);
-//        serial.writeString(" ");
-//        serial.writeString(key);
+//    export function set_mdsn(str : string) {
+//        serial.writeString("MD ");
+//        serial.writeString(str);
 //        serial.writeString("\n");
 //    }
+    //% blockId=S_web block="webサーバー開始 %v"
+//    export function start_web() : void {
+///        serial.writeString("SWEB");
+//        serial.writeString("\n");
+//    }
+    //% blockId=START_AMB block="Ambientサービスに接続 %String %String %v"
+    export function StartAmb(ambient_id : string,key : string) {
+        serial.writeString("SAMB ");
+        serial.writeString(ambient_id);
+        serial.writeString(" ");
+        serial.writeString(key);
+        serial.writeString("\n");
+    }
     //% blockId=SET_AMB block="Ambient送信データをセット %String %String %v"
     export function SetAmb(channel : number,data : string) {
         serial.writeString("STA ");
