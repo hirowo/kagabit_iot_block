@@ -7,7 +7,7 @@ namespace comment {
 //        pin2: DigitalPin;        
     }
     
-    //% blockId=INIT block="初期化　%v"
+    //% blockId=INIT block="初期化　"
     export function init() : void{
         let block = new KAGA_IoT();
         serial.redirect(SerialPin.P0, SerialPin.P1, 9600)
@@ -55,7 +55,7 @@ namespace comment {
         serial.writeString(key);
         serial.writeString("\n");
     }
-    //% blockId=SET_AMn block="Ambient送信データをセット %String %String %v"
+    //% blockId=SET_AM block="Ambient送信データをセット %v %String %v"
     export function SetAmb(channel : number,data : string) {
         serial.writeString("STA ");
         serial.writeString(channel.toString());
