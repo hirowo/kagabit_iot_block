@@ -12,7 +12,7 @@ namespace comment {
         let block = new KAGA_IoT();
         serial.redirect(SerialPin.P0, SerialPin.P1, 9600)
     }
-    //% blockId=SSID block="SSID %string %v"
+    //% blockId=SSID block="SSID %string "
     export function sendSSID(ssid : string){
         serial.writeString("SS ");
         serial.writeString(ssid);
