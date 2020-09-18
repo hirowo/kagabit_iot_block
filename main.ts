@@ -63,7 +63,7 @@ namespace comment {
         serial.writeString(data);
         serial.writeString("\n");
     }
-    //% blockId=SEND_AMB block="Ambient送信データをセット%v"
+    //% blockId=SEND_AMB block="Ambientにデータを送信%v"
     export function SendAmb()  : void{
         serial.writeString("SEA");
         serial.writeString("\n");
