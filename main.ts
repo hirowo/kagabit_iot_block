@@ -1,10 +1,10 @@
 //% weight=70 icon="\uf075" color=#00FFFF block="KAGA_IoT"
 namespace comment {
-    let p1 = DigitalPin.P0;
-    let p2 = DigitalPin.P16;
+//    let p1 = DigitalPin.P0;
+//    let p2 = DigitalPin.P16;
     export class KAGA_IoT {
-        pin1: DigitalPin;
-        pin2: DigitalPin;        
+//        pin1: DigitalPin;
+//        pin2: DigitalPin;        
     }
     
     //% blockId=INIT block="初期化　%v"
