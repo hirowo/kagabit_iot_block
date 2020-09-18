@@ -30,10 +30,10 @@ namespace comment {
         serial.writeString("\n");
     }
      //% blockId=sendsatring block="文字列をwebに表示する %string %number"
-    export function SendString(str : string,interval : number) {
+    export function SendString(str : string,int : number) {
         serial.writeString("SSD ");
         serial.writeString(str);
-        serial.writeString(interval.toString());
+        serial.writeString(int.toString());
         serial.writeString("\n");
     }
      //% blockId=mdsn block="ホスト名を設定 %string "
@@ -47,7 +47,7 @@ namespace comment {
         serial.writeString("SWEB");
         serial.writeString("\n");
     }
-    //% blockId=START_AMB block="Ambientサービスに接続 %String %String "
+    //% blockId=START_AMB block="チャネルid %String ライトキー%String "
     export function startAmb(ambient_id : string,key : string) {
         serial.writeString("SAMB ");
         serial.writeString(ambient_id);
