@@ -55,13 +55,13 @@ namespace comment {
         serial.writeString(key);
         serial.writeString("\n");
     }
-    //% blockId=SET_AMB block="Ambient送信データをセット %String %String %v"
+    //% blockId=SET_AMn block="Ambient送信データをセット %String %String %v"
     export function SetAmb(channel : number,data : string) {
- //       serial.writeString("STA ");
- //       serial.writeString(channel.toString());
- //       serial.writeString(" ");
- //       serial.writeString(data);
- //       serial.writeString("\n");
+        serial.writeString("STA ");
+        serial.writeString(channel.toString());
+        serial.writeString(" ");
+        serial.writeString(data);
+        serial.writeString("\n");
     }
     //% blockId=SEND_AMB block="Ambientにデータを送信%v"
     export function SendAmb()  : void{
