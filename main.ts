@@ -1,4 +1,3 @@
-//% weight=70 icon="\uf075" color=#00FFFF block="KAGA_IoT"
 namespace comment {
 //    let p1 = DigitalPin.P0;
 //    let p2 = DigitalPin.P16;
@@ -29,7 +28,8 @@ namespace comment {
         serial.writeString("WS");
         serial.writeString("\n");
     }
-     //% blockId=sendsatring block="文字列をwebに表示する %string データ%number"
+     //% blockId=sendsatring 
+     //% block="文字列をwebに表示する %string データ %number"
     export function SendString(str : string,int : number) {
         serial.writeString("SSD ");
         serial.writeString(str);
@@ -47,7 +47,8 @@ namespace comment {
         serial.writeString("SWEB");
         serial.writeString("\n");
     }
-    //% blockId=START_AMB block="チャネルid %String ライトキー %String "
+    //% blockId=START_AMB 
+    //% block="チャネルid %String ライトキー %String "
     export function startAmb(ambient_id : string,key : string) {
         serial.writeString("SAMB ");
         serial.writeString(ambient_id);
