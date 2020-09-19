@@ -23,8 +23,15 @@ namespace comment {
         serial.writeString(pass);
         serial.writeString("\n");
     }
-   //% blockId=SCONNECT block="接続       "
-    export function Connect() : void {
+   //% blockId=SCONNECT 
+   //% block="SSID %string PASSWORD %string に接続"
+    export function Connect(ssid : string,pass : string) {
+        serial.writeString("SS ");
+        serial.writeString(ssid);
+        serial.writeString("\n");
+        serial.writeString("PA ");
+        serial.writeString(pass);
+        serial.writeString("\n");
         serial.writeString("WS");
         serial.writeString("\n");
     }
