@@ -48,7 +48,7 @@ namespace comment {
         serial.writeString("\n");
     }
     //% blockId=START_AMB 
-    //% block="チャネルid %String ライトキー %String "
+    //% block="チャネルid %String ライトキー %String"
     export function startAmb(ambient_id : string,key : string) {
         serial.writeString("SAMB ");
         serial.writeString(ambient_id);
@@ -56,7 +56,8 @@ namespace comment {
         serial.writeString(key);
         serial.writeString("\n");
     }
-    //% blockId=SET_AM block="Ambient　チャート番号　%number データ %number "
+    //% blockId=SET_AM 
+    //% block="Ambient チャート番号 %number データ %number "
     export function SetAmb(channel : number,data : number) {
         serial.writeString("STA ");
         serial.writeString(channel.toString());
