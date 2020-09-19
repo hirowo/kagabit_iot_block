@@ -1,4 +1,4 @@
-namespace comment {
+namespace KAGA_IoT {
 //    let p1 = DigitalPin.P0;
 //    let p2 = DigitalPin.P16;
     export class KAGA_IoT {
