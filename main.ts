@@ -1,3 +1,4 @@
+//% weight=70 icon="\uf075" color=#FF0000 block="KAGA_IoT"
 namespace KAGA_IoT {
 //    let p1 = DigitalPin.P0;
 //    let p2 = DigitalPin.P16;
