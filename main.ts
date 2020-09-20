@@ -25,8 +25,8 @@ namespace KAGA_IoT {
         serial.writeString("\n");
     }
    //% blockId=SCONNECT 
-   //% block="SSID_PASS %string PASSWORD %string に接続"
-    export function Connect(ssid : string,pass : string) {
+   //% block="SSID %string PASSWORD %string に接続"
+    export function SConnect(ssid : string,pass : string) {
         serial.writeString("SS ");
         serial.writeString(ssid);
         serial.writeString("\n");
@@ -36,6 +36,12 @@ namespace KAGA_IoT {
         serial.writeString("WS");
         serial.writeString("\n");
     }
+   //% blockId=CONNECT 
+   //% block="接続"
+    export function Connect() : void{
+        serial.writeString("WS");
+        serial.writeString("\n");
+    }    
      //% blockId=sendsatring 
      //% block="文字列をwebに表示する %string データ %number"
     export function SendString(str : string,int : number) {
