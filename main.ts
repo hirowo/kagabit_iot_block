@@ -25,7 +25,7 @@ namespace KAGA_IoT {
         serial.writeString("\n");
     }
    //% blockId=SCONNECT 
-   //% block="SSID %string PASSWORD %string に接続"
+   //% block="SSID %string1 PASSWORD %string2 に接続"
     export function SConnect(ssid : string,pass : string) {
         serial.writeString("SS ");
         serial.writeString(ssid);
