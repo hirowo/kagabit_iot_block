@@ -12,18 +12,7 @@ namespace KAGA_IoT {
         let block = new KAGA_IoT();
         serial.redirect(SerialPin.P0, SerialPin.P1, 9600)
     }
-    //% blockId=SSID block="SSID %string "
-    export function sendSSID(ssid : string){
-        serial.writeString("SS ");
-        serial.writeString(ssid);
-        serial.writeString("\n");
-    }
-    //% blockId=PASS block="PASSWORD %string"
-    export function sendPASS(pass : string){
-        serial.writeString("PA ");
-        serial.writeString(pass);
-        serial.writeString("\n");
-    }
+
    //% blockId=SCONNECT 
    //% block="SSID %string1 PASSWORD %string2 に接続"
     export function SConnect(ssid : string,pass : string) {
@@ -36,10 +25,11 @@ namespace KAGA_IoT {
         serial.writeString("WS");
         serial.writeString("\n");
     }
-   //% blockId=CONNECT 
-   //% block="接続"
-    export function Connect() : void{
-        serial.writeString("WS");
+   //% blockId=sendtag 
+   //% block="タグを送信する %string "
+    export function Sendtag(str : string) {
+        serial.writeString("SSD ");
+        serial.writeString(str);
         serial.writeString("\n");
     }    
      //% blockId=sendsatring 
@@ -62,7 +52,7 @@ namespace KAGA_IoT {
         serial.writeString("\n");
     }
     //% blockId=START_AMB 
-    //% block="チャネルid %String ライトキー %String"
+    //% block="チャネルid %String1 ライトキー %String2"
     export function startAmb(ambient_id : string,key : string) {
         serial.writeString("SAMB ");
         serial.writeString(ambient_id);
@@ -71,7 +61,7 @@ namespace KAGA_IoT {
         serial.writeString("\n");
     }
     //% blockId=SET_AM 
-    //% block="Ambient チャート番号 %number データ %number "
+    //% block="Ambient チャート番号 %number1 データ %number2 "
     export function SetAmb(channel : number,data : number) {
         serial.writeString("STA ");
         serial.writeString(channel.toString());
@@ -81,9 +71,31 @@ namespace KAGA_IoT {
     }
     //% blockId=SEND_AMB block="Ambientにデータを送信"
     export function SendAmb()  : void{
-        serial.writeString("SEA");
+        serial.writeString("SEA ");
         serial.writeString("\n");
     }
-        
+    //% blockId=SET_MQTT 
+    //%block="MQTTサーバーアドレス指定　%String "
+    export function SetMqtt(m_address : string) {
+        serial.writeString("SMT ");
+        serial.writeString(m_address);
+        serial.writeString("\n");
+    }
+    //% blockId=PUB_MQTT 
+    //%block="トピックを指定　%String データをパブリッシュ %number"
+    export function PubMqtt(topic : string,data : number) {
+        serial.writeString("PUB ");
+        serial.writeString(topic);
+        serial.writeString(" ");
+        serial.writeString(data.toString());
+        serial.writeString("\n");
+    }       
+    //% blockId=SUB_MQTT 
+    //%block="トピックを指定　%Stringからサブスクライブする"
+    export function SubMqtt(topic : string){
+        serial.writeString("SUB ");
+        serial.writeString(topic);
+        serial.writeString("\n");
+    }       
 
 }
