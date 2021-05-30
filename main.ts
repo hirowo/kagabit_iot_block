@@ -27,30 +27,30 @@ namespace KAGA_IoT {
     }
    //% blockId=sendtag 
    //% block="タグを送信する %string "
-    export function Sendtag(str : string) {
-        serial.writeString("SSD ");
-        serial.writeString(str);
-        serial.writeString("\n");
-    }    
-     //% blockId=sendsatring 
-     //% block="文字列をwebに表示する %string データ %number"
-    export function SendString(str : string,int : number) {
-        serial.writeString("SSD ");
-        serial.writeString(str);
-        serial.writeString(int.toString());
-        serial.writeString("\n");
-    }
-     //% blockId=mdsn block="ホスト名を設定 %string "
-    export function set_mdsn(str : string) {
-        serial.writeString("MD ");
-        serial.writeString(str);
-        serial.writeString("\n");
-    }
-    //% blockId=S_web block="webサーバー開始 "
-    export function start_web() : void {
-        serial.writeString("SWEB");
-        serial.writeString("\n");
-    }
+ //   export function Sendtag(str : string) {
+ //       serial.writeString("SSD ");
+ //       serial.writeString(str);
+ //       serial.writeString("\n");
+ //   }    
+//     //% blockId=sendsatring 
+//     //% block="文字列をwebに表示する %string データ %number"
+//    export function SendString(str : string,int : number) {
+//        serial.writeString("SSD ");
+//        serial.writeString(str);
+//        serial.writeString(int.toString());
+ //       serial.writeString("\n");
+//    }
+ //    //% blockId=mdsn block="ホスト名を設定 %string "
+ //   export function set_mdsn(str : string) {
+//        serial.writeString("MD ");
+//        serial.writeString(str);
+//        serial.writeString("\n");
+//    }
+//    //% blockId=S_web block="webサーバー開始 "
+//    export function start_web() : void {
+//        serial.writeString("SWEB");
+//        serial.writeString("\n");
+//    }
     //% blockId=START_AMB 
     //% block="チャネルid %String1 ライトキー %String2"
     export function startAmb(ambient_id : string,key : string) {
