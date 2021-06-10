@@ -1,3 +1,16 @@
+
+enum MyEnum {
+    //% block="年"
+    ONE = 1　,
+    //% block="月"
+    TWO = 2 ,
+    //% block="日"
+    THREE= 3
+
+}
+
+
+
 //% weight=70 icon="\uf075" color=#FF0000 block="KAGA_IoT"
 namespace KAGA_IoT {
 //    let p1 = DigitalPin.P0;
@@ -99,10 +112,25 @@ namespace KAGA_IoT {
     }       
     //% blockId=Get_time 
     //%block="時間を取得する"
-
     export function Gettime() : void{
-        serial.writeString("GT");
+        serial.writeString("TG");
         serial.writeString("\n");
-    }       
+    }
+    //% blockId=Read_time 
+    //%block="%MyEnumを読む"       
+    export function ReadTime(e: MyEnum) : number {
+        // Add code here
+        serial.writeString("TG ");
+        if(e == 1){
+            serial.writeString("1 ");
+        }
+        else if(e == 2){
+            serial.writeString("2 ");
+        }
+        else {
 
+        }
+        serial.writeString("\n");
+        return e;
+    }
 }
