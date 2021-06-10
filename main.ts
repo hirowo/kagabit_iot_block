@@ -5,7 +5,13 @@ enum MyEnum {
     //% block="月"
     TWO = 2 ,
     //% block="日"
-    THREE= 3
+    THREE= 3,
+    //% block="時間"
+    FOUR = 4,
+    //% block="分"
+    HUN = 5,
+    //% block="秒"
+    BYOU = 6
 
 }
 
