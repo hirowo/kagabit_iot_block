@@ -118,7 +118,7 @@ namespace KAGA_IoT {
     }
     //% blockId=Read_time 
     //%block="%MyEnumを読む"       
-    export function ReadTime(e: MyEnum) : number {
+    export function ReadTime(e: MyEnum) : String {
         // Add code here
         serial.writeString("TG ");
         if(e == 1){
@@ -127,10 +127,14 @@ namespace KAGA_IoT {
         else if(e == 2){
             serial.writeString("2 ");
         }
+        else if(e == 3){
+            serial.writeString("3 ");
+        }
         else {
 
         }
         serial.writeString("\n");
-        return e;
+ 
+        return serial.readLine();
     }
 }
