@@ -97,5 +97,12 @@ namespace KAGA_IoT {
         serial.writeString(topic);
         serial.writeString("\n");
     }       
+    //% blockId=Get_time 
+    //%block="時間を取得する"
+
+    export function Gettime() : void{
+        serial.writeString("GT");
+        serial.writeString("\n");
+    }       
 
 }
