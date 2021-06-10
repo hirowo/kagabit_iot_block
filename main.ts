@@ -150,6 +150,6 @@ namespace KAGA_IoT {
         }
         serial.writeString("\n");
  
-        return serial.readLine();
+        return serial.readString()();
     }
 }
