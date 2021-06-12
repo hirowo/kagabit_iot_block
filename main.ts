@@ -171,7 +171,7 @@ namespace KAGA_IoT {
         return serial.readString();
     }
     //% blockId=ondata 
-    //%block="%MyEnumを読む"       
+    //%block="サブスク"       
     serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
     
     })
