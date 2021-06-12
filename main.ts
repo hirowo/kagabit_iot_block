@@ -57,6 +57,7 @@ namespace KAGA_IoT {
         else {
             rtn = 1;
         }
+        
         return rtn;
     }
 
@@ -169,4 +170,9 @@ namespace KAGA_IoT {
  
         return serial.readString();
     }
+    //% blockId=ondata 
+    //%block="%MyEnumを読む"       
+    serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
+    
+    })
 }
