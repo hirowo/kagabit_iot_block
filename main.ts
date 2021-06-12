@@ -21,6 +21,8 @@ enum MyEnum {
 namespace KAGA_IoT {
 //    let p1 = DigitalPin.P0;
 //    let p2 = DigitalPin.P16;
+    
+
     export class KAGA_IoT {
 //        pin1: DigitalPin;
 //        pin2: DigitalPin;        
@@ -44,6 +46,21 @@ namespace KAGA_IoT {
         serial.writeString("WS");
         serial.writeString("\n");
     }
+   //% blockId=kakunin 
+   //% 接続を確認"
+    export function cconnect() : number{
+        let rtn = 0;
+        let str = serial.readString();
+        if(str == '$'){
+            rtn = 0;
+        }
+        else {
+            rtn = 1;
+        }
+        return rtn;
+    }
+
+
    //% blockId=sendtag 
    //% block="タグを送信する %string "
  //   export function Sendtag(str : string) {
