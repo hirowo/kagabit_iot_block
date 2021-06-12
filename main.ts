@@ -172,7 +172,10 @@ namespace KAGA_IoT {
     }
     //% blockId=ondata 
     //%block="サブスク"       
-    serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
+    export function　Readsub(e: MyEnum) : string {
+        serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
     
-    })
+        })
+        return serial.readString();
+    }
 }
