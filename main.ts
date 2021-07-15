@@ -142,8 +142,10 @@ namespace KAGA_IoT {
     }
     //% blockId=Read_time 
     //%block="%MyEnumを読む"       
-    export function ReadTime(e: MyEnum) : string {
+    export function ReadTime(e: MyEnum) : void {
         // Add code here
+
+
         serial.writeString("RT ");
         if(e == 1){
             serial.writeString("1");
@@ -168,14 +170,14 @@ namespace KAGA_IoT {
         }
         serial.writeString("\n");
  
-        return serial.readString();
+  //      return serial.readString();
     }
     //% blockId=ondata 
     //%block="サブスク"       
-    export function　Readsub() : string {
-        serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
+ //   export function　Readsub() : string {
+ //       serial.onDataReceived(serial.delimiters(Delimiters.NewLine), function () {
     
-        })
-        return serial.readString();
-    }
+ //       })
+ //       return serial.readString();
+ //   }
 }
