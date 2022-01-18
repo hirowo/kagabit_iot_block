@@ -1,4 +1,6 @@
 
+
+
 enum MyEnum {
     //% block="年"
     ONE = 1　,
@@ -21,8 +23,56 @@ enum MyEnum {
 namespace KAGA_IoT {
 //    let p1 = DigitalPin.P0;
 //    let p2 = DigitalPin.P16;
-    
+    let error_code : string;
+    let recv_data : string;
+    let recv_time_data: string;
 
+    let connect_flg : number;
+    let tme_flg: number;
+    let time_data: number;
+
+    interface DeviceState {
+        nextCommand: number;
+    }
+    const MICROBIT_KAGABIT_ERROR_RECIEV_ID = 3757;
+ 
+    const MICROBIT_KAGABIT_PUBRISH_RECIEV_ID = 3758;
+    function readSerial() {
+        let buf: string;
+        while (true) {
+            
+           buf = serial.readUntil('\n');
+
+            if(buf.charAt(0) == 'X'){
+                error_code = buf.substr(2);
+                control.raiseEvent(
+                    MICROBIT_KAGABIT_ERROR_RECIEV_ID,
+                    0
+                )
+            }
+            else if (buf.charAt(0) == '#') {
+                recv_data = buf.substr(2);
+                control.raiseEvent(
+                    MICROBIT_KAGABIT_PUBRISH_RECIEV_ID,
+                    0
+                )
+            }
+            else if (buf.charAt(0) == '$'){
+                connect_flg = 1;
+            }
+            else if (buf.charAt(0) == 'T') {
+                recv_time_data = buf.substr(2);
+                time_data = parseInt(recv_time_data, 10);
+                tme_flg = 1;
+            }
+
+            else{
+//                basic.showIcon(IconNames.Happy, 1000);
+            }
+
+        }
+    }
+    let deviceState: DeviceState = undefined;
     export class KAGA_IoT {
 //        pin1: DigitalPin;
 //        pin2: DigitalPin;        
@@ -31,7 +81,10 @@ namespace KAGA_IoT {
     //% blockId=INIT block="初期化　    "
     export function init() : void{
         let block = new KAGA_IoT();
+        connect_flg = 0;
+        tme_flg = 0;
         serial.redirect(SerialPin.P0, SerialPin.P1, 9600)
+        control.inBackground(readSerial);
     }
 
    //% blockId=SCONNECT 
@@ -47,20 +100,11 @@ namespace KAGA_IoT {
         serial.writeString("\n");
     }
    //% blockId=kakunin 
-   //% 接続を確認"
+   //% block="接続を確認"
     export function cconnect() : number{
-        let rtn = 0;
-        let str = serial.readString();
-        if(str == '$'){
-            rtn = 0;
-        }
-        else {
-            rtn = 1;
-        }
         
-        return rtn;
+        return connect_flg;
     }
-
 
    //% blockId=sendtag 
    //% block="タグを送信する %string "
@@ -140,37 +184,84 @@ namespace KAGA_IoT {
         serial.writeString("TG");
         serial.writeString("\n");
     }
-    //% blockId=Read_time 
+    
+    //% blockId=Read_timeb 
     //%block="%MyEnumを読む"       
-    export function ReadTime(e: MyEnum) : void {
+    export function  ReadTime_Block(e: MyEnum): number{
         // Add code here
-
+        let i : number;
+        let buf : string;
+        let result : string;
 
         serial.writeString("RT ");
-        if(e == 1){
+        if (e == 1) {
             serial.writeString("1");
         }
-        else if(e == 2){
+        else if (e == 2) {
             serial.writeString("2");
         }
-        else if(e == 3){
+        else if (e == 3) {
             serial.writeString("3");
         }
-        else if(e == 4){
+        else if (e == 4) {
             serial.writeString("4");
         }
-        else if(e == 5){
+        else if (e == 5) {
             serial.writeString("5");
         }
-        else if(e == 6){
+        else if (e == 6) {
             serial.writeString("6");
         }
         else {
 
         }
+        
         serial.writeString("\n");
- 
-  //      return serial.readString();
+        while(tme_flg == 0){
+            basic.pause(1000);
+        }
+        tme_flg = 0;
+        return time_data;
+    }
+
+    //% blockId=subsuku 
+    //%block="データがパブリッシュされました"
+    export function subsuku(handler: () => void){
+        control.onEvent(
+            MICROBIT_KAGABIT_PUBRISH_RECIEV_ID,
+            EventBusValue.MICROBIT_EVT_ANY,
+            () => {
+                handler();
+            }
+
+        )
+    }
+    //% blockId=ERROR 
+    //%block="エラーコードを受信"
+    export function error_recv(handler: () => void) {
+        control.onEvent(
+            MICROBIT_KAGABIT_ERROR_RECIEV_ID,
+            EventBusValue.MICROBIT_EVT_ANY,
+            () => {
+
+                handler();
+            }
+
+        )
+    }
+    //% blockId=Read_error_code 
+    //%block="エラーコードを読む"       
+    export function ReadEoorcode(): string {
+        // Add code here
+
+        return error_code;
+    }
+    //% blockId=Read_sub_data 
+    //%block="サブスクライブしたデータを読む"       
+    export function Readsubdata(): string {
+        // Add code here
+
+        return recv_data;
     }
     //% blockId=ondata 
     //%block="サブスク"       
