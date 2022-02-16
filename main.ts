@@ -17,6 +17,29 @@ enum MyEnum {
 
 }
 
+enum vpin {
+    //% block="V0"
+    V0 = 0,
+    //% block="V1"
+    V1 = 1,
+    //% block="V2"
+    V2 = 2,
+    //% block="V3"
+    V3 = 3,
+
+}
+enum spin {
+    //% block="V4"
+    V4 = 4,
+    //% block="V5"
+    V5 = 5,
+    //% block="V6"
+    V6 = 6,
+    //% block="V7"
+    V7 = 7,
+
+}
+
 
 
 //% weight=70 icon="\uf075" color=#FF0000 block="KAGA_IoT"
@@ -26,6 +49,13 @@ namespace KAGA_IoT {
     let error_code : string;
     let recv_data : string;
     let recv_time_data: string;
+//   blynkデータ
+    let recv_blynk_str: string;
+    let rech_blynk_channel: number;
+    let recv_blynk_data0: number;
+    let recv_blynk_data1: number;
+    let recv_blynk_data2: number;
+    let recv_blynk_data3: number;
 
     let connect_flg : number;
     let tme_flg: number;
@@ -35,8 +65,9 @@ namespace KAGA_IoT {
         nextCommand: number;
     }
     const MICROBIT_KAGABIT_ERROR_RECIEV_ID = 3757;
- 
     const MICROBIT_KAGABIT_PUBRISH_RECIEV_ID = 3758;
+    const MICROBIT_KAGABIT_BLYNK_RECIEV_ID = 3759;
+
     function readSerial() {
         let buf: string;
         while (true) {
@@ -64,6 +95,39 @@ namespace KAGA_IoT {
                 recv_time_data = buf.substr(2);
                 time_data = parseInt(recv_time_data, 10);
                 tme_flg = 1;
+            }
+            else if (buf.charAt(0) == 'B'){
+                if (buf.charAt(1) == '0'){
+                    rech_blynk_channel = 0;
+                    recv_blynk_str = buf.substr(3);
+                    recv_blynk_data0 = parseInt(recv_blynk_str, 10);
+                }
+                else if (buf.charAt(1) == '1') {
+                    rech_blynk_channel = 1;
+                    recv_blynk_str = buf.substr(3);
+                    recv_blynk_data1 = parseInt(recv_blynk_str, 10);
+                }
+                else if (buf.charAt(1) == '2') {
+                    rech_blynk_channel = 2;
+                    recv_blynk_str = buf.substr(3);
+                    recv_blynk_data2 = parseInt(recv_blynk_str, 10);
+                }
+                else if (buf.charAt(1) == '3') {
+                    rech_blynk_channel = 3;
+                    recv_blynk_str = buf.substr(3);
+                    recv_blynk_data3 = parseInt(recv_blynk_str, 10);
+                }
+                else {
+                    rech_blynk_channel = 0;
+                    recv_blynk_str = buf.substr(3);
+                    recv_blynk_data0 = parseInt(recv_blynk_str, 10);
+                }
+
+                control.raiseEvent(
+                    MICROBIT_KAGABIT_BLYNK_RECIEV_ID,
+                    0
+                )
+
             }
 
             else{
@@ -223,6 +287,28 @@ namespace KAGA_IoT {
         tme_flg = 0;
         return time_data;
     }
+    //% blockId=SEND_AUTH 
+    //%block="AUTH_ID%Stringを設定する"
+    export function SetAuth(auth: string): void {
+        serial.writeString("GTA");
+        serial.writeString(" ");
+        serial.writeString(auth);
+        serial.writeString("\n");
+    }
+    //% blockId=SEND_TEMPLATE_ID
+    //%block="TEMPLATE_ID%Stringを設定する"
+    export function SetTempId(template: string): void {
+        serial.writeString("GTT");
+        serial.writeString(" ");
+        serial.writeString(template);
+        serial.writeString("\n");
+    }
+    //% blockId=START_ID
+    //%block="BLYNKサービス開始"
+    export function StartBlynk(): void {
+        serial.writeString("STB");
+        serial.writeString("\n");
+    }
 
     //% blockId=subsuku 
     //%block="データがパブリッシュされました"
@@ -249,6 +335,20 @@ namespace KAGA_IoT {
 
         )
     }
+    //% blockID = BLYNK_REC
+    //%block="blynkのデータを受信"
+    export function blynk_recv(handler: () => void) {
+        control.onEvent(
+            MICROBIT_KAGABIT_BLYNK_RECIEV_ID,
+            EventBusValue.MICROBIT_EVT_ANY,
+            () => {
+
+                handler();
+                
+            }
+
+        )
+    }
     //% blockId=Read_error_code 
     //%block="エラーコードを読む"       
     export function ReadEoorcode(): string {
@@ -263,6 +363,49 @@ namespace KAGA_IoT {
 
         return recv_data;
     }
+    //% blockId=Read_blynk_ch 
+    //%block="受信ピン"       
+    export function Readblynk_ch(): number {
+        // Add code here
+
+        return rech_blynk_channel;
+    }
+    //% blockId=Read_blynk_data 
+    //%block="BLYNKの受信データを読む %number"       
+    export function Readsubblinkdata(e: vpin): number {
+        // Add code here
+        let i: number;
+        if(e == 0){
+            i = recv_blynk_data0;
+        }
+        else if (e == 1) {
+            i = recv_blynk_data1;
+        }
+        else if (e == 2) {
+            i = recv_blynk_data2;
+        }
+        else if (e == 3) {
+            i = recv_blynk_data3;
+        }
+        else {
+            i = recv_blynk_data1;
+        }
+
+        return i;
+    }
+    //% blockId=send_blynk_data 
+    //%block="BLYNKにデータを送信する %number1 %number2"       
+    export function sendblinkdata(e: spin,data:number): void {
+        // Add code here
+        let i: number;
+        serial.writeString("SNB ");
+        serial.writeString(e.toString());
+        serial.writeString(" ");
+        serial.writeString(data.toString());
+        serial.writeString("\n");
+
+    }
+
     //% blockId=ondata 
     //%block="サブスク"       
  //   export function　Readsub() : string {
