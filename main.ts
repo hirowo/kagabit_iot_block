@@ -287,6 +287,33 @@ namespace KAGA_IoT {
         tme_flg = 0;
         return time_data;
     }
+    //% blockId=IFTURL 
+    //%block="EVENT%String1とKEY%String2を設定する"
+    export function SetURL(event: string,key : string): void {
+        serial.writeString("EVK");
+        serial.writeString(" ");
+        serial.writeString(event);
+        serial.writeString(" ");
+        serial.writeString(key);
+        serial.writeString("\n");
+    }
+    //% blockId=SNDIFT 
+    //%block="data%numberをIFTTTに送信する"
+    export function SendIFT(data: number): void {
+        serial.writeString("SIF");
+        serial.writeString(" ");
+        serial.writeString(data.toString());
+        serial.writeString("\n");
+    }
+    //% blockId=SNDIFTSTR 
+    //%block="文字列（半角）%StringをIFTTTに送信する"
+    export function SendIFTSTR(data: string): void {
+        serial.writeString("SIS");
+        serial.writeString(" ");
+        serial.writeString(data);
+        serial.writeString("\n");
+    }
+
     //% blockId=SEND_AUTH 
     //%block="AUTH_ID%Stringを設定する"
     export function SetAuth(auth: string): void {
