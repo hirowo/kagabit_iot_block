@@ -29,14 +29,14 @@ enum vpin {
 
 }
 enum val {
-    //% block="V0"
-    Value1 = 8,
-    //% block="V1"
-    Value2 = 9,
-    //% block="V2"
-    Value3 = 10,
-    //% block="V3"
-    Value4 = 11,
+    //% block="Value1"
+    Value1 = 1,
+    //% block="Value2"
+    Value2 = 2,
+    //% block="Value3"
+    Value3 = 3,
+    //% block="Value4"
+    Value4 = 4,
 
 }
 
