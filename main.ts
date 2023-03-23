@@ -28,6 +28,19 @@ enum vpin {
     V3 = 3,
 
 }
+enum val {
+    //% block="V0"
+    Value1 = 1,
+    //% block="V1"
+    Value2 = 2,
+    //% block="V2"
+    Value3 = 3,
+    //% block="V3"
+    Value4 = 4,
+
+}
+
+
 enum spin {
     //% block="V4"
     V4 = 4,
@@ -298,9 +311,11 @@ namespace KAGA_IoT {
         serial.writeString("\n");
     }
     //% blockId=SNDIFT 
-    //%block="data%numberをIFTTTに送信する"
-    export function SendIFT(data: number): void {
+    //%block="data%val %numberをIFTTTに送信する"
+    export function SendIFT(e: val,data: number): void {
         serial.writeString("SIF");
+        serial.writeString(" ");
+        serial.writeString(e.toString());
         serial.writeString(" ");
         serial.writeString(data.toString());
         serial.writeString("\n");
